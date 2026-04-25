@@ -1,3 +1,18 @@
 .zig-cache/
 zig-out/
 *.o
+
+
+# Ambientes virtuales
+venv/
+env/
+
+# Archivos de bases de datos
+data/
+
+# Python
+_pycache_/
+*.pyc
+
+# Sistema
+.DS_Store
