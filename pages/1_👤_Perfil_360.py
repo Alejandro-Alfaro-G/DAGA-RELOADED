@@ -8,7 +8,10 @@ from utils.carga import (
     lista_users_demo,
 )
 from utils.insights import insights_usuario
-from utils.config import PALETTE, CHART_COLORS
+from utils.config import PALETTE, CHART_COLORS, apply_sidebar_dark_theme
+
+# Aplicar tema oscuro a la barra lateral
+apply_sidebar_dark_theme()
 
 st.set_page_config(page_title="Perfil 360°", page_icon="👤", layout="wide")
 st.title("👤 Perfil 360°")

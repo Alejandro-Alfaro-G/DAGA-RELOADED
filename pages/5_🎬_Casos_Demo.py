@@ -7,7 +7,10 @@ from utils.carga import (
 )
 from utils.casos_demo import seleccionar_casos_demo
 from utils.insights import insights_usuario
-from utils.config import CASE_COLORS
+from utils.config import CASE_COLORS, apply_sidebar_dark_theme
+
+# Aplicar tema oscuro a la barra lateral
+apply_sidebar_dark_theme()
 
 st.set_page_config(page_title="Casos Demo", page_icon="🎬", layout="wide")
 st.title("🎬 Casos Demo · Storyline")

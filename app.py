@@ -3,6 +3,10 @@ import streamlit as st
 from utils.carga import (
     load_clientes, load_transacciones, load_conversaciones, load_productos,
 )
+from utils.config import apply_sidebar_dark_theme
+
+# Aplicar tema oscuro a la barra lateral
+apply_sidebar_dark_theme()
 
 st.set_page_config(
     page_title="Hey Banco · Motor de Inteligencia",
