@@ -20,6 +20,7 @@ with st.spinner("Cargando datasets..."):
     conv = load_conversaciones()
     ftx = load_features_tx()
     fconv = load_features_conv()
+    feature = load_features_conv()
 
 if cli.empty:
     st.error("No se encontró hey_clientes.csv en hey_demo/data/. Copia los archivos ahí.")
@@ -169,11 +170,47 @@ if conv_u.empty:
 else:
     st.caption(f"{conv_u['conv_id'].nunique()} conversaciones · {len(conv_u)} interacciones")
 
-    if fconv_u is not None and "perfil_dominante" in fconv_u.index:
-        perfil = fconv_u.get("perfil_dominante")
-        if pd.notna(perfil):
-            st.success(f"Perfil conversacional dominante: **{perfil}**")
+    if fconv_u is not None:
+        # 1. Mostrar Perfil Dominante
+        if "perfil_dominante" in fconv_u.index and pd.notna(fconv_u["perfil_dominante"]):
+            st.success(f"Perfil conversacional dominante: **{fconv_u['perfil_dominante']}**")
 
+        # 2. NUEVO: Gráfico de distribución de intenciones
+        # Extraemos todas las columnas que empiezan con 'pct_'
+        pct_cols = [col for col in fconv_u.index if str(col).startswith('pct_')]
+        
+        if pct_cols:
+            # Construimos un dataframe limpio para Plotly
+            df_topics = pd.DataFrame({
+                "Tema": [col.replace('pct_', '').replace('_', ' ').capitalize() for col in pct_cols],
+                "Porcentaje": [float(fconv_u[col]) for col in pct_cols] # Forzamos a float por seguridad
+            })
+            
+            # Filtramos solo los temas de los que el usuario habló (> 0%)
+            df_topics = df_topics[df_topics["Porcentaje"] > 0].sort_values("Porcentaje", ascending=True)
+
+            if not df_topics.empty:
+                fig_topics = px.bar(
+                    df_topics, 
+                    x="Porcentaje", 
+                    y="Tema", 
+                    orientation="h",
+                    color_discrete_sequence=["#E30613"] # Rojo Hey Banco
+                )
+                
+                # Formato visual
+                fig_topics.update_traces(texttemplate="%{x:.0%}", textposition="outside")
+                fig_topics.update_layout(
+                    height=max(200, len(df_topics) * 45), # Ajuste automático de altura según la cantidad de barras
+                    margin=dict(l=10, r=40, t=10, b=10),  # Margen derecho extra para que no se corte el porcentaje
+                    xaxis_tickformat=".0%",
+                    xaxis_title="",
+                    yaxis_title=""
+                )
+                
+                st.plotly_chart(fig_topics, use_container_width=True)
+
+    # 3. Historial de chats (Tu código original)
     convs_ord = (
         conv_u.sort_values("date")
         .groupby("conv_id")

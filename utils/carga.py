@@ -56,7 +56,7 @@ def load_features_tx() -> pd.DataFrame:
 
 @st.cache_data(show_spinner=False)
 def load_features_conv() -> pd.DataFrame:
-    return _read_parquet_safe("features_conv.parquet")
+    return _read_parquet_safe("../scripts/features_conv.parquet")
 
 
 @st.cache_data(show_spinner=False)
@@ -82,3 +82,4 @@ def lista_users_demo(n: int = 200) -> list:
     if len(cand) > n:
         cand = cand.sample(n, random_state=42)
     return sorted(cand["user_id"].tolist())
+
