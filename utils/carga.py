@@ -22,12 +22,12 @@ def _read_parquet_safe(name: str) -> pd.DataFrame:
 
 @st.cache_data(show_spinner=False)
 def load_clientes() -> pd.DataFrame:
-    return _read_csv_safe("hey_clientes.csv")
+    return _read_csv_safe("dataset_transacciones/hey_clientes.csv")
 
 
 @st.cache_data(show_spinner=False)
 def load_productos() -> pd.DataFrame:
-    df = _read_csv_safe("hey_productos.csv")
+    df = _read_csv_safe("dataset_transacciones/hey_productos.csv")
     if not df.empty and "fecha_apertura" in df.columns:
         df["fecha_apertura"] = pd.to_datetime(df["fecha_apertura"], errors="coerce")
     return df
@@ -35,7 +35,7 @@ def load_productos() -> pd.DataFrame:
 
 @st.cache_data(show_spinner=False)
 def load_transacciones() -> pd.DataFrame:
-    df = _read_csv_safe("hey_transacciones.csv")
+    df = _read_csv_safe("dataset_transacciones/hey_transacciones.csv")
     if not df.empty and "fecha_hora" in df.columns:
         df["fecha_hora"] = pd.to_datetime(df["fecha_hora"], errors="coerce")
     return df
@@ -43,7 +43,7 @@ def load_transacciones() -> pd.DataFrame:
 
 @st.cache_data(show_spinner=False)
 def load_conversaciones() -> pd.DataFrame:
-    df = _read_parquet_safe("dataset_50k_anonymized.parquet")
+    df = _read_parquet_safe("dataset_conversaciones/dataset_50k_anonymized.parquet")
     if not df.empty and "date" in df.columns:
         df["date"] = pd.to_datetime(df["date"], errors="coerce")
     return df

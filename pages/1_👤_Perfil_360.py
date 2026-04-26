@@ -117,7 +117,7 @@ st.markdown("#### Gasto por categoría (MCC)")
 if not tx_u.empty and "categoria_mcc" in tx_u.columns and "monto" in tx_u.columns:
     tx_ok = tx_u
     if "estatus" in tx_u.columns:
-        tx_ok = tx_u[tx_u["estatus"].astype(str).str.lower() == "exitosa"]
+        tx_ok = tx_u[tx_u["estatus"].astype(str).str.lower() == "completada"]
     gasto_mcc = (
         tx_ok.groupby("categoria_mcc", as_index=False)["monto"]
         .sum().sort_values("monto", ascending=True)
