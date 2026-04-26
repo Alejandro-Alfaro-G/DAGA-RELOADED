@@ -22,3 +22,6 @@ logs/
 
 # Sistema
 .DS_Store
+
+# Ignorar archivo de embeddings
+scripts/conversaciones_con_embeddings.csv
