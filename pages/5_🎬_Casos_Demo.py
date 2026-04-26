@@ -7,6 +7,7 @@ from utils.carga import (
 )
 from utils.casos_demo import seleccionar_casos_demo
 from utils.insights import insights_usuario
+from utils.config import CASE_COLORS
 
 st.set_page_config(page_title="Casos Demo", page_icon="🎬", layout="wide")
 st.title("🎬 Casos Demo · Storyline")
@@ -38,7 +39,7 @@ DEFS = {
         "icono": "💰",
         "titulo": "Cross-sell evidente",
         "subtitulo": "Cliente con ingreso alto sin producto de inversión",
-        "color": "#2E7D32",
+        "color": CASE_COLORS["cross_sell"],
         "accion": "Ofrecer **Inversión Hey CETES** vía push notification + email personalizado",
         "bot": "Bot Inversión",
     },
@@ -46,7 +47,7 @@ DEFS = {
         "icono": "🚨",
         "titulo": "Alerta de cargo anómalo",
         "subtitulo": "Patrón de uso atípico detectado en tiempo real",
-        "color": "#C62828",
+        "color": CASE_COLORS["anomalia"],
         "accion": "Disparar **alerta de seguridad** + bloqueo preventivo + verificación 2FA",
         "bot": "Bot Anomalías",
     },
@@ -54,7 +55,7 @@ DEFS = {
         "icono": "📊",
         "titulo": "Insight de gasto sorprendente",
         "subtitulo": "Concentración fuerte en una sola categoría",
-        "color": "#1565C0",
+        "color": CASE_COLORS["gasto"],
         "accion": "Activar **Coach de Gastos** con plan de ahorro personalizado y alertas de presupuesto",
         "bot": "Coach de Gastos",
     },
@@ -62,7 +63,7 @@ DEFS = {
         "icono": "💔",
         "titulo": "Cliente en riesgo de churn",
         "subtitulo": "Inactividad + insatisfacción · cliente valioso",
-        "color": "#EF6C00",
+        "color": CASE_COLORS["churn"],
         "accion": "Disparar **campaña de retención**: 3 meses sin comisiones + llamada proactiva del ejecutivo",
         "bot": "Bot Retención",
     },

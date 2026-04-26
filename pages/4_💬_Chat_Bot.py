@@ -11,6 +11,7 @@ from utils.carga import (
     load_clientes, load_productos, load_transacciones, load_conversaciones,
     lista_users_demo,
 )
+from utils.config import BOT_COLORS
 
 st.set_page_config(page_title="Chat Bot", page_icon="💬", layout="wide")
 
@@ -19,35 +20,35 @@ st.set_page_config(page_title="Chat Bot", page_icon="💬", layout="wide")
 # ============================================================
 BOTS = {
     "coach_gastos": {
-        "nombre": "Coach de Gastos", "emoji": "📊", "color": "#1565C0",
+        "nombre": "Coach de Gastos", "emoji": "📊", "color": BOT_COLORS["coach_gastos"],
         "saludo": "Hola, soy tu Coach de Gastos. ¿Qué te gustaría revisar hoy?",
     },
     "anti_friccion": {
-        "nombre": "Asistente de Soporte", "emoji": "🛠️", "color": "#6A1B9A",
+        "nombre": "Asistente de Soporte", "emoji": "🛠️", "color": BOT_COLORS["anti_friccion"],
         "saludo": "Hola, estoy aquí para resolver cualquier problema con tus operaciones.",
     },
     "hey_pro": {
-        "nombre": "Asesor Hey Pro", "emoji": "⭐", "color": "#F9A825",
+        "nombre": "Asesor Hey Pro", "emoji": "⭐", "color": BOT_COLORS["hey_pro"],
         "saludo": "Te puedo mostrar todos los beneficios de Hey Pro y si te conviene.",
     },
     "inversion": {
-        "nombre": "Asesor de Inversión", "emoji": "💰", "color": "#2E7D32",
+        "nombre": "Asesor de Inversión", "emoji": "💰", "color": BOT_COLORS["inversion"],
         "saludo": "Hola, te ayudo a hacer crecer tu dinero con Inversión Hey.",
     },
     "anomalias": {
-        "nombre": "Centro de Seguridad", "emoji": "🚨", "color": "#C62828",
+        "nombre": "Centro de Seguridad", "emoji": "🚨", "color": BOT_COLORS["anomalias"],
         "saludo": "Estoy monitoreando tu cuenta. ¿Detectaste algún movimiento extraño?",
     },
     "cross_sell": {
-        "nombre": "Asesor Hey", "emoji": "🎯", "color": "#00838F",
+        "nombre": "Asesor Hey", "emoji": "🎯", "color": BOT_COLORS["cross_sell"],
         "saludo": "Tengo recomendaciones de productos que se ajustan a tu perfil.",
     },
     "retencion": {
-        "nombre": "Atención al Cliente", "emoji": "💝", "color": "#EF6C00",
+        "nombre": "Atención al Cliente", "emoji": "💝", "color": BOT_COLORS["retencion"],
         "saludo": "Hola, soy parte del equipo de atención. Cuéntame cómo te podemos ayudar.",
     },
     "onboarding": {
-        "nombre": "Havi", "emoji": "🤖", "color": "#E30613",
+        "nombre": "Havi", "emoji": "🤖", "color": BOT_COLORS["onboarding"],
         "saludo": "¡Hola! Soy Havi, tu asistente Hey. ¿En qué te ayudo?",
     },
 }

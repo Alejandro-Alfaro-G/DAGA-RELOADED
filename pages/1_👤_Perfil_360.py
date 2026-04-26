@@ -8,6 +8,7 @@ from utils.carga import (
     lista_users_demo,
 )
 from utils.insights import insights_usuario
+from utils.config import PALETTE, CHART_COLORS
 
 st.set_page_config(page_title="Perfil 360°", page_icon="👤", layout="wide")
 st.title("👤 Perfil 360°")
@@ -127,7 +128,7 @@ if not tx_u.empty and "categoria_mcc" in tx_u.columns and "monto" in tx_u.column
         st.info("Sin transacciones exitosas para este usuario.")
     else:
         fig = px.bar(gasto_mcc, x="monto", y="categoria_mcc", orientation="h",
-                     text="monto", color_discrete_sequence=["#E30613"])
+                     text="monto", color_discrete_sequence=[CHART_COLORS["transactions"]])
         fig.update_traces(texttemplate="$%{x:,.0f}", textposition="outside")
         fig.update_layout(height=420, margin=dict(l=10, r=10, t=10, b=10),
                           xaxis_title="MXN", yaxis_title="")
@@ -158,7 +159,7 @@ with c_time:
         tmp["mes"] = tmp["fecha_hora"].dt.to_period("M").astype(str)
         agg = tmp.groupby("mes").agg(n=("monto", "size"),
                                      monto=("monto", "sum")).reset_index()
-        fig = px.bar(agg, x="mes", y="monto", color_discrete_sequence=["#E30613"])
+        fig = px.bar(agg, x="mes", y="monto", color_discrete_sequence=[CHART_COLORS["transactions"]])
         fig.update_layout(height=320, margin=dict(l=10, r=10, t=10, b=10),
                           yaxis_title="MXN gastados", xaxis_title="")
         st.plotly_chart(fig, use_container_width=True)
@@ -195,7 +196,7 @@ else:
                     x="Porcentaje", 
                     y="Tema", 
                     orientation="h",
-                    color_discrete_sequence=["#E30613"] # Rojo Hey Banco
+                    color_discrete_sequence=[CHART_COLORS["conversations"]]
                 )
                 
                 # Formato visual
